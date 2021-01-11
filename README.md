@@ -105,6 +105,10 @@ No known bugs at this time.
 </table>
 <br>
 
+## Stretch Goals
+
+- Calling a logged-in user's name in the welcome message, not their user name (email, currently).
+
 
 ## Support and contact details
 
