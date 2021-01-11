@@ -3,14 +3,16 @@ using System;
 using Library.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Library.Migrations
 {
     [DbContext(typeof(LibraryContext))]
-    partial class LibraryContextModelSnapshot : ModelSnapshot
+    [Migration("20210111213501_AddModels")]
+    partial class AddModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,36 +69,6 @@ namespace Library.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Library.Models.Author", b =>
-                {
-                    b.Property<int>("AuthorId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("AuthorName");
-
-                    b.HasKey("AuthorId");
-
-                    b.ToTable("Authors");
-                });
-
-            modelBuilder.Entity("Library.Models.AuthorBook", b =>
-                {
-                    b.Property<int?>("AuthorBookID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int?>("AuthorId");
-
-                    b.Property<int?>("BookId");
-
-                    b.HasKey("AuthorBookID");
-
-                    b.HasIndex("AuthorId");
-
-                    b.HasIndex("BookId");
-
-                    b.ToTable("AuthorBook");
-                });
-
             modelBuilder.Entity("Library.Models.Book", b =>
                 {
                     b.Property<int>("BookId")
@@ -139,24 +111,6 @@ namespace Library.Migrations
                     b.ToTable("BookPatron");
                 });
 
-            modelBuilder.Entity("Library.Models.Checkout", b =>
-                {
-                    b.Property<int?>("CheckoutId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int?>("CopyId");
-
-                    b.Property<int?>("PatronId");
-
-                    b.HasKey("CheckoutId");
-
-                    b.HasIndex("CopyId");
-
-                    b.HasIndex("PatronId");
-
-                    b.ToTable("Checkout");
-                });
-
             modelBuilder.Entity("Library.Models.Copy", b =>
                 {
                     b.Property<int>("CopyId")
@@ -164,7 +118,7 @@ namespace Library.Migrations
 
                     b.HasKey("CopyId");
 
-                    b.ToTable("Copies");
+                    b.ToTable("Copy");
                 });
 
             modelBuilder.Entity("Library.Models.Patron", b =>
@@ -286,17 +240,6 @@ namespace Library.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Library.Models.AuthorBook", b =>
-                {
-                    b.HasOne("Library.Models.Author", "Author")
-                        .WithMany("Books")
-                        .HasForeignKey("AuthorId");
-
-                    b.HasOne("Library.Models.Book", "Book")
-                        .WithMany()
-                        .HasForeignKey("BookId");
-                });
-
             modelBuilder.Entity("Library.Models.Book", b =>
                 {
                     b.HasOne("Library.Models.Copy", "Copy")
@@ -317,17 +260,6 @@ namespace Library.Migrations
 
                     b.HasOne("Library.Models.Patron", "Patron")
                         .WithMany("Books")
-                        .HasForeignKey("PatronId");
-                });
-
-            modelBuilder.Entity("Library.Models.Checkout", b =>
-                {
-                    b.HasOne("Library.Models.Copy", "Copy")
-                        .WithMany()
-                        .HasForeignKey("CopyId");
-
-                    b.HasOne("Library.Models.Patron", "Patron")
-                        .WithMany()
                         .HasForeignKey("PatronId");
                 });
 

@@ -24,6 +24,8 @@ namespace Library.Models
         public DateTime DueDate { get; set; } = DateTime.Now.AddDays(14); // View: @hidden
         public bool Overdue { get; set; } = false;
         public virtual ApplicationUser User { get; set; }
+        public int CopyId { get; set; }
+        public virtual Copy Copy { get; set; }
         public virtual ICollection<BookPatron> Patrons { get; }
     }
 }
