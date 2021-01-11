@@ -1,0 +1,27 @@
+@{
+    Layout = "_Layout";
+}
+
+@using Library.Models;
+@using System.Security.Claims
+@model IEnumerable<Library.Models.Book>
+
+<h1>Books</h1>
+
+@if (Model.Any())
+{
+    <ul>
+    @foreach (Book book in Model)
+    {
+        <li>@Html.ActionLink($"{book.Title}", "Details", new { id = book.BookId})</li>
+    }
+    </ul>
+}
+else
+{
+    <h3>There are no books in this library</h3>
+}
+
+<p>@Html.ActionLink("Add a Title", "Create")</p>
+<p>@Html.ActionLink("Back to Home", "Index", "Home")</p>
+

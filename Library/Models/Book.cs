@@ -12,6 +12,7 @@ namespace Library.Models
             this.Patrons = new HashSet<BookPatron>();
         }
         public int BookId { get; set; }
+        public string Title { get; set; }
         public bool CheckedOut { get; set; } = false;
         // Stretch:
         // [Display(Name="Date")]
