@@ -10,7 +10,7 @@ _A C#/.NET/MVC program designed to catalog a library's books and let patrons che
 
 ## MySQL Designer Schema
 
- ![Schema](/Library/wwwroot/img/Library_Schema.png)
+ ![Schema](Library/wwwroot/img/Library_Schema.png "SQL Database Schema")
 
 ## Specifications
 
