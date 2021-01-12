@@ -38,16 +38,16 @@ namespace Library.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create(Book book, int AuthorId)
+        public async Task<ActionResult> Create(Book book, int AuthorId, int BookId)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var currentUser = await _userManager.FindByIdAsync(userId);
             book.User = currentUser;
-            _db.Books.Add(book);
             if (AuthorId != 0)
             {
                 _db.AuthorBook.Add(new AuthorBook() { AuthorId = AuthorId, BookId = book.BookId});
             }
+            _db.Books.Add(book);
             _db.SaveChanges();
             return RedirectToAction("Index");
         }

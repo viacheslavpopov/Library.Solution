@@ -12,6 +12,7 @@
   <p>Hello @User.Identity.Name!</p>
   <p>@Html.ActionLink("View Books", "Index", "Books")</p>
   <p>@Html.ActionLink("View Patrons", "Index", "Patrons")</p>
+  <p>@Html.ActionLink("View Authors", "Index", "Authors")</p>
   @using (Html.BeginForm("LogOff", "Account"))
   {
     <input type="submit" class="btn btn-default" value="Log out" />

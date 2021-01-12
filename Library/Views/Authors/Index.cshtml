@@ -1,0 +1,27 @@
+@{
+    Layout = "_Layout";
+}
+
+@using Library.Models;
+@using System.Security.Claims
+@model IEnumerable<Library.Models.Author>
+
+<h1>Authors</h1>
+
+@if (Model.Any())
+{
+    <ul>
+    @foreach (Author author in Model)
+    {
+        <li>@Html.ActionLink($"{author.AuthorName}", "Details", new { id = author.AuthorId})</li>
+    }
+    </ul>
+}
+else
+{
+    <h3>There are no authors in this library.. yet</h3>
+}
+
+<p>@Html.ActionLink("Add a Title", "Create")</p>
+<p>@Html.ActionLink("Add an Author", "Create")</p>
+<p>@Html.ActionLink("Back to Home", "Index", "Home")</p>
