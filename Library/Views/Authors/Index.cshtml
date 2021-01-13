@@ -6,8 +6,8 @@
 @using System.Security.Claims
 @model IEnumerable<Library.Models.Author>
 
-<h1>Authors</h1>
-
+<h2>Authors</h2>
+<hr>
 @if (Model.Any())
 {
     <ul>
@@ -22,6 +22,6 @@ else
     <h3>There are no authors in this library.. yet</h3>
 }
 
-<p>@Html.ActionLink("Add a Title", "Create", "Books")</p> @* CreateBookFromAuthor route to reroute to add an author page when complete *@
-<p>@Html.ActionLink("Add an Author", "Create")</p>
+<p>@Html.ActionLink("Add a Title to Existing Author", "Create", "Books")</p> @* CreateBookFromAuthor route to reroute to add an author page when complete *@
+<p>@Html.ActionLink("Add a New Author", "Create")</p>
 <p>@Html.ActionLink("Back to Home", "Index", "Home")</p>

@@ -4,8 +4,8 @@
 
 @model Library.Models.Author
 
-<h1>Edit</h1>
-
+<h2>Edit</h2>
+<hr>
 <h4>Edit this category: @Html.DisplayFor(model => model.AuthorName)</h4>
 
 @using (Html.BeginForm())
@@ -14,6 +14,9 @@
 
     @Html.LabelFor(model => model.AuthorName)
     @Html.EditorFor(model => model.AuthorName)
+    <br>
+    @Html.Label("Select Book")
+    @Html.DropDownList("BookId", "-No Update-")
 
     <input type="submit" value="Save" />
 }

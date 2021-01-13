@@ -5,7 +5,7 @@
 @model Library.Models.Book
 
 <h2>Edit</h2>
-
+<hr>
 <h4>Edit this book: @Html.DisplayFor(model => model.Title)</h4>
 
 @using (Html.BeginForm())
@@ -15,11 +15,17 @@
   @Html.LabelFor(model => model.Title)
   @Html.TextBoxFor(model => model.Title)
 
+  <br>
+
   @Html.LabelFor(model => model.CheckedOut)
   @Html.CheckBoxFor(model => model.CheckedOut)
 
-  @Html.LabelFor(model => model.DueDate)
-  @Html.TextBoxFor(model => model.DueDate, new { @type = "date" })
+  <br>
+
+  @Html.Label("Select Author")
+  @Html.DropDownList("AuthorId", "-No Update-")
+
+  @Html.HiddenFor(model => model.DueDate)
 
   @Html.HiddenFor(model => model.Overdue)
 

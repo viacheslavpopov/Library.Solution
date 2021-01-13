@@ -28,6 +28,7 @@ namespace Library.Controllers
         public ActionResult Index()
         {
         List<Patron> model = _db.Patrons.ToList();
+        model.Sort((x, y) => string.Compare(x.PatronName, y.PatronName));
         return View(model);
         }
 
@@ -112,7 +113,7 @@ namespace Library.Controllers
                 _db.BookPatron.Add(new BookPatron() { BookId = BookId, PatronId = patron.PatronId });
             }
             _db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", new { id = patron.PatronId});
         }
 
         public ActionResult DeleteBook(int joinId)

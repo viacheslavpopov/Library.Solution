@@ -8,12 +8,22 @@
 <hr />
 
 <h3>@Html.DisplayNameFor(model => model.Title): @Html.DisplayFor(model => model.Title)</h3>
-<h3>Checked Out? @Html.DisplayFor(model => model.CheckedOut)</h3>
+<h4>Checked Out? @Html.DisplayFor(model => model.CheckedOut)</h4>
+@*<h4> Check out to: @Html.DisplayFor("PatronName")</h4>*@
+<h4>Due Date: @Model.DueDate.ToString("MM dd, yyyy")</h4>
+@*<h4>Overdue: @Html.DisplayFor(model => model.Overdue)</h4>*@
+@* @if (Model.DueDate > DateTime.Now)
+{
+  Model.Overdue == false;
+}
+else{
+  Model.Overdue == true;
+} *@
 <br>
 @if(@Model.Authors.Count == 0)
 {
   <p>This book does not belong to any authors.</p>
-  <p>@Html.ActionLink("Add Author to This Book", "Edit", "Books") || @Html.ActionLink("Create New Author", "Create", "Authors")</p>
+  <p>@Html.ActionLink("Add Author to This Book", "AddAuthor", "Books", new { id = Model.BookId }) || @Html.ActionLink("Create New Author", "Create", "Authors")</p>
   <hr />
 }
 else
@@ -23,13 +33,18 @@ else
   @foreach(var join in Model.Authors)
   {
     <li>@join.Author.AuthorName</li>
-      @using (Html.BeginForm("DeleteAuthor", "Books"))
-      {
-        @Html.Hidden("joinId", @join.AuthorBookId)
-        <input type="submit" value="Delete"/>
-      }
+    @using (Html.BeginForm("DeleteAuthor", "Books"))
+    {
+      @Html.Hidden("joinId", @join.AuthorBookId)
+      <input type="submit" value="Delete"/>
+    }
   }
   </ul>
 }
+<h4>This book has been checked out by:</h4>
+  @foreach(var join in Model.Patrons)
+  {
+    <p>@join.Patron.PatronName</p>
+  }
 
-<p>@Html.ActionLink("View all books", "Index") || @Html.ActionLink("Edit Book", "Edit", new { id = Model.BookId }) || @Html.ActionLink("Add an Author", "Create", "Authors") || @Html.ActionLink("Delete Book", "Delete", new { id = Model.BookId })</p>
+<p>@Html.ActionLink("View All Books", "Index") || @Html.ActionLink("Edit Book", "Edit", new { id = Model.BookId }) || @Html.ActionLink("Add an Author", "Create", "Authors") || @Html.ActionLink("Delete Book", "Delete", new { id = Model.BookId })</p>

@@ -11,6 +11,8 @@
 @if(@Model.Books.Count == 0)
 {
   <p>We do not have any books written by this author</p>
+  <p>@Html.ActionLink("Add Book to this Author", "AddBook", "Authors", new { id = Model.AuthorId }) || @Html.ActionLink("Create New Book", "Create", "Books")</p>
+  <hr />
 }
 else
 {
@@ -19,10 +21,13 @@ else
   @foreach(var join in Model.Books)
   {
     <li>@join.Book.Title</li>
+    @using (Html.BeginForm("DeleteBook", "Authors"))
+    {
+      @Html.Hidden("joinId", @join.AuthorBookId)
+      <input type="submit" value="Delete"/>
+    }
   }
   </ul>
 }
 
-<p>@Html.ActionLink("Back to Authors", "Index")</p>
-<p>@Html.ActionLink("Edit Author", "Edit", new { id = Model.AuthorId })</p>
-<p>@Html.ActionLink("Delete Author", "Delete", new { id = Model.AuthorId })</p>
+<p>@Html.ActionLink("View All Authors", "Index") || @Html.ActionLink("Edit Author", "Edit", new { id = Model.AuthorId }) || @Html.ActionLink("Delete Author", "Delete", new { id = Model.AuthorId })</p>

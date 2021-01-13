@@ -27,6 +27,7 @@ namespace Library.Controllers
         public ActionResult Index()
         {
             List<Author> model = _db.Authors.ToList();
+            model.Sort((x, y) => string.Compare(x.AuthorName, y.AuthorName));
             return View(model);
         }
 
@@ -56,6 +57,10 @@ namespace Library.Controllers
         public ActionResult Edit(int id)
         {
             var thisAuthor = _db.Authors.FirstOrDefault(author => author.AuthorId == id);
+            if (thisAuthor == null)
+            {
+                return RedirectToAction("Details", new {id = id});
+            }
             ViewBag.BookId = new SelectList(_db.Books, "BookId", "Title");
             return View(thisAuthor);
         }
@@ -69,7 +74,7 @@ namespace Library.Controllers
             }
             _db.Entry(author).State = EntityState.Modified;
             _db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", new { id = author.AuthorId });
         }
 
         public ActionResult Delete(int id)
@@ -118,6 +123,24 @@ namespace Library.Controllers
             _db.AuthorBook.Remove(joinEntry);
             _db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult AddBook(int joinId, int id)
+        {
+            var thisAuthor = _db.Authors.FirstOrDefault(authors => authors.AuthorId == id);
+            ViewBag.BookId = new SelectList(_db.Books, "BookId", "Title");
+            return View(thisAuthor);
+        }
+
+        [HttpPost]
+        public ActionResult AddBook(Author author, int BookId)
+        {
+            if (BookId != 0)
+            {
+                _db.AuthorBook.Add(new AuthorBook() { BookId = BookId, AuthorId = author.AuthorId });
+            }
+            _db.SaveChanges();
+            return RedirectToAction("Details", new { id = author.AuthorId});
         }
     }
 }
