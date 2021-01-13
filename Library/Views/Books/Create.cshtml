@@ -12,9 +12,17 @@
     @Html.LabelFor(model => model.Title)
     @Html.TextBoxFor(model => model.Title)
 
-    @Html.Label("Select author")
+    //Stretch
+    @* @Html.HiddenFor("AuthorId")
+    @Html.LabelFor("Add new author")
+    @Html.TextBoxFor("AuthorId")
+
+    <p>--OR--</p> *@
+
+    @Html.Label("Select existing author")
     @Html.DropDownList("AuthorId", " ")
 
     <input type="submit" value="Add new book title" class="btn btn-default">
 }
 <p>@Html.ActionLink("Show all books", "Index")</p>
+<p>@Html.ActionLink("Library Home", "Index", "Home")</p>

@@ -10,6 +10,7 @@ namespace Library.Models
         public Book()
         {
             this.Patrons = new HashSet<BookPatron>();
+            this.Authors = new HashSet<AuthorBook>();
         }
         public int BookId { get; set; }
         public string Title { get; set; }
@@ -28,6 +29,7 @@ namespace Library.Models
         // public int CopyId { get; set; }
         // public virtual Copy Copy { get; set; }
         public virtual ICollection<BookPatron> Patrons { get; }
+        public ICollection<AuthorBook> Authors { get; set; }
         // public virtual ICollection<Checkout> Copies { get; set; }
     }
 }

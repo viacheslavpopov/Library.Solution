@@ -1,0 +1,34 @@
+@{
+    Layout = "_Layout";
+}
+
+@model Library.Models.Patron
+
+<h2>Patron Details</h2>
+<hr />
+<h3>Patron Name: @Html.DisplayFor(model => model.PatronName)</h3>
+
+@if(@Model.Books.Count == 0)
+{
+    <p>This patron has not checked out any books</p>
+}
+else
+{
+    <h4>Books this patron has checked out:</h4>
+    <ul>
+    @foreach(var join in Model.Books)
+    {
+        <li>@join.Book.Title</li>
+        @using (Html.BeginForm("DeleteBook", "Patrons"))
+        {
+        @Html.Hidden("joinId", @join.BookPatronId)
+        <input type="submit" value="Delete"/>
+        }
+    }
+    </ul>
+}
+
+<p>@Html.ActionLink("Back to Patron List", "Index")</p>
+<p>@Html.ActionLink("Edit Patron", "Edit", new { id = Model.PatronId })</p>
+<p>@Html.ActionLink("Checkout Book", "AddBook", new { id = Model.PatronId })</p>
+<p>@Html.ActionLink("Delete Patron", "Delete", new { id = Model.PatronId })</p>

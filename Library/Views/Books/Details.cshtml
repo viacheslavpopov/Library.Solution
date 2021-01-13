@@ -1,0 +1,35 @@
+@{
+  Layout ="_Layout";
+}
+
+@model Library.Models.Book
+
+<h2>Book Details</h2>
+<hr />
+
+<h3>@Html.DisplayNameFor(model => model.Title): @Html.DisplayFor(model => model.Title)</h3>
+<h3>Checked Out? @Html.DisplayFor(model => model.CheckedOut)</h3>
+<br>
+@if(@Model.Authors.Count == 0)
+{
+  <p>This book does not belong to any authors.</p>
+  <p>@Html.ActionLink("Add Author to This Book", "Edit", "Books") || @Html.ActionLink("Create New Author", "Create", "Authors")</p>
+  <hr />
+}
+else
+{
+  <h4>Author(s) this book belongs to:</h4>
+  <ul>
+  @foreach(var join in Model.Authors)
+  {
+    <li>@join.Author.AuthorName</li>
+      @using (Html.BeginForm("DeleteAuthor", "Books"))
+      {
+        @Html.Hidden("joinId", @join.AuthorBookId)
+        <input type="submit" value="Delete"/>
+      }
+  }
+  </ul>
+}
+
+<p>@Html.ActionLink("View all books", "Index") || @Html.ActionLink("Edit Book", "Edit", new { id = Model.BookId }) || @Html.ActionLink("Add an Author", "Create", "Authors") || @Html.ActionLink("Delete Book", "Delete", new { id = Model.BookId })</p>

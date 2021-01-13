@@ -1,0 +1,22 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Library.Models.Patron
+
+<h2>Edit</h2>
+
+<h4>Edit this book: @Html.DisplayFor(model => model.PatronName)</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.PatronId)
+
+  @Html.LabelFor(model => model.PatronName)
+  @Html.TextBoxFor(model => model.PatronName)
+
+  <input type="submit" value="Save">
+}
+
+<p>@Html.ActionLink("Show all Patrons", "Index", "Patrons")</p>
+<p>@Html.ActionLink("Library Home", "Index", "Home")</p>

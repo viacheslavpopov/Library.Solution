@@ -148,3 +148,10 @@ _MySQL Workbench 8.0 for Windows_
 *This software is licensed under the MIT license.*
 
 Copyright (c) 2020 **Chelsea Becker and Danielle Thompson**
+
+Notes: For copies - if AuthorId and BookId in db are equal to new entry, increment 1 copy
+
+Wed Notes:
+- Delete button for "author this book belongs to" returns "Something went wrong" - looked like the route was incorrect in the browser's url
+- Still can't correctly delete entries with join entry keys - might need to check if all join relationships are accounted for in the controllers in delete/deleteconfirmed
+- Work on adding copies model back in & tie into checked out checkbox.

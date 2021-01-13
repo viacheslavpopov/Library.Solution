@@ -1,0 +1,28 @@
+@{
+    Layout = "_Layout";
+}
+
+@using Library.Models
+@model Library.Models.Patron
+
+<h1>Checkout a Book</h1>
+
+<h4>Patron Name: @Html.DisplayFor(model => model.PatronName)</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.PatronId)
+
+    @Html.Label("Select Book")
+    @Html.DropDownList("BookId")
+
+    @*
+    <p>Select "Check Out" if you would like to check this book out:</p>
+    @Html.Label("Check Out")
+    @Html.RadioButtonFor("CheckedOut", false)
+    @Html.RadioButtonFor("CheckedOut", true)
+    *@
+
+    <input type="submit" value="Complete Checkout">
+}
+<p>@Html.ActionLink("Back to previous page", "Index")</p>

@@ -3,8 +3,11 @@
 }
 
 <h1>Welcome to the Public Library</h1>
-<p>@Html.ActionLink("View Books", "Index", "Books")</p>
-<p>@Html.ActionLink("View Patrons", "Index", "Patrons")</p>
-<p>@Html.ActionLink("View Authors", "Index", "Authors")</p>
-<p>@Html.ActionLink("Create an account", "Index", "Account")</p>
-<p>@Html.ActionLink("Login to account", "Login", "Account")</p>
+
+
+<div class="card bg-light mb-3" style="max-width: 36rem;">
+    <div class="card-body">
+        <h3 class="card-title">@Html.ActionLink("Account Home", "Index", "Account")</h3>
+        <p class="card-text"><h5>@Html.ActionLink("Create an account", "Index", "Account") || @Html.ActionLink("Login to account", "Login", "Account")</h5></p>
+    </div>
+</div>

@@ -34,40 +34,93 @@ namespace Library.Controllers
         [Authorize]
         public ActionResult Create()
         {
-        ViewBag.BookId = new SelectList(_db.Books, "BookId", "Title");
-        return View();
+            ViewBag.BookId = new SelectList(_db.Books, "BookId", "Title");
+            return View();
         }
 
         [HttpPost]
-        public async Task <ActionResult> Create(Patron patron, int BookId)
+        public ActionResult Create(Patron patron, int BookId)
         {
-        var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        var currentUser = await _userManager.FindByIdAsync(userId);
-        patron.User = currentUser;
-        _db.Patrons.Add(patron);
-        if (BookId != 0)
-        {
-            _db.BookPatron.Add(new BookPatron() { BookId = BookId, PatronId = patron.PatronId });
-        }
-        _db.SaveChanges();
-        return RedirectToAction("Index");
+            _db.Patrons.Add(patron);
+            if (BookId != 0)
+            {
+                _db.BookPatron.Add(new BookPatron() { BookId = BookId, PatronId = patron.PatronId });
+            }
+            _db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         public ActionResult Details(int id)
         {
-        var thisPatron = _db.Patrons
-            .Include(patron => patron.Books)
-            .ThenInclude(join => join.Book)
-            // .Include(patron => patron.Copies) // eh?
-            // .ThenInclude(join => join.Copy)
-            // OR ...
-            // List<Copy> foundCopies = _db.Copies.Where(copy => copy.PatronId == id).ToList();
-            //ViewBag.foundCopies = foundCopies;
-            .Include(patron => patron.User)
-            .FirstOrDefault(patron => patron.PatronId == id);
-        var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        ViewBag.IsCurrentUser = userId != null ? userId == thisPatron.User.Id : false;
-        return View(thisPatron);
+            var thisPatron = _db.Patrons
+                .Include(patron => patron.Books)
+                .ThenInclude(join => join.Book)
+                // .Include(patron => patron.Copies) // eh?
+                // .ThenInclude(join => join.Copy)
+                // OR ...
+                // List<Copy> foundCopies = _db.Copies.Where(copy => copy.PatronId == id).ToList();
+                //ViewBag.foundCopies = foundCopies;
+                // .Include(patron => patron.User)
+                .FirstOrDefault(patron => patron.PatronId == id);
+            // var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            // ViewBag.IsCurrentUser = userId != null ? userId == thisPatron.User.Id : false;
+            return View(thisPatron);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var thisPatron = _db.Patrons.FirstOrDefault(patron => patron.PatronId == id);
+            return View(thisPatron);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Patron patron)
+        {
+            _db.Entry(patron).State = EntityState.Modified;
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Delete(int id)
+        {
+            var thisPatron = _db.Patrons.FirstOrDefault(patron => patron.PatronId == id);
+            return View(thisPatron);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            var thisPatron = _db.Patrons.FirstOrDefault(patron => patron.PatronId == id);
+            _db.Patrons.Remove(thisPatron);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult AddBook(int id)
+        {
+            var thisPatron = _db.Patrons.FirstOrDefault(patrons => patrons.PatronId == id);
+            ViewBag.BookId = new SelectList(_db.Books, "BookId", "Title");
+            ViewBag.CheckedOut = new SelectList(_db.Books, "BookId", "CheckedOut");
+            return View(thisPatron);
+        }
+
+        [HttpPost]
+        public ActionResult AddBook(Patron patron, int BookId)
+        {
+            if (BookId != 0)
+            {
+                _db.BookPatron.Add(new BookPatron() { BookId = BookId, PatronId = patron.PatronId });
+            }
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult DeleteBook(int joinId)
+        {
+            var joinEntry = _db.BookPatron.FirstOrDefault(entry => entry.BookPatronId == joinId);
+            _db.BookPatron.Remove(joinEntry);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
