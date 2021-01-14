@@ -1,107 +1,43 @@
-# Library Catalog
+CREATE DATABASE  IF NOT EXISTS `library` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `library`;
+-- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
+--
+-- Host: localhost    Database: library
+-- ------------------------------------------------------
+-- Server version	8.0.19
 
-#### Practice Project, Last Updated 01.11.2021
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-#### **By Chelsea Becker and Danielle Thompson**
+--
+-- Table structure for table `__efmigrationshistory`
+--
 
-## Description
-
-_A C#/.NET/MVC program designed to catalog a library's books and let patrons check them out._
-
-## MySQL Designer Schema
-
-[![Library-Schema.png](https://i.postimg.cc/zfJPFGs4/Library-Schema.png)](https://postimg.cc/RWDRM4VT)
-
-## Specifications
-
-<table>
-<tr>
-  <th>User Story #</th>
-  <th>User Story</th>
-  <th>Actualized</th>
-</tr>
-<tr>
-  <td>1</td>
-  <td>"As a librarian, I want to create, read, update, delete, and list books in the catalog, so that we can keep track of our inventory."</td>
-  <td>True</td>
-</tr>
-<tr>
-  <td>2</td>
-  <td>"As a librarian, I want to enter multiple authors for a book, so that I can include accurate information in my catalog."</td>
-  <td>True</td>
-</tr>
-<tr>
-  <td>3</td>
-  <td>"As a patron, I want to check a book out, so that I can take it home with me."</td>
-  <td>Partially - librarian ("administrator") can check a patron out.</td>
-</tr>
-<tr>
-  <td>4</td>
-  <td>As a user, I want to know when a book that has been checked out is due, so that I know when it is due.</td>
-  <td>True</td>
-</tr>
-</table>
-<br>
-
-## Setup/Installation Requirements
-
-### Installing .NET Core Framework for Windows(10+) Users
-
-1. _Download the 64-bit .NET Core SDK (Software Development Kit) by following this link: https://dotnet.microsoft.com/download/thank-you/dotnet-sdk-2.2.203-windows-x64-installer._<br>
-1a. _Follow prompts to begin your download. The download will be a .exe file. Click to install when it is finished downloading._
-2. _After clicking the downloaded .exe file, follow the prompts in the installer and use suggested default settings._
-3. _You can confirm a successful installation by opening a command line terminal and running the command $ dotnet --version, which should return a version number._
-
-
-### Installing .NET Core Framework for Mac Users
-
-1. _Download the .NET Core SDK by following this link: https://dotnet.microsoft.com/download/thank-you/dotnet-sdk-2.2.106-macos-x64-installer._<br>
-1a. _Follow prompts to begin your download. The download will be a .pkg file. Click to install when it is finished downloading._
-2. _After clicking the downloaded .pkg file, follow the prompts in the installer and use suggested default settings._
-3. _You can confirm a successful installation by opening a command line terminal and running the command $ dotnet --version, which should return a version number._
-
-### Installing MySQL Workbench
-
-1. _[Download and install](https://dev.mysql.com/downloads/workbench/) the version of MySQL Workbench suitable for your machine._
-
-### View locally/Project Setup
-
-#### Clone
-1. _Follow above steps to install .NET Core._
-2. _Open web browser and go to https://github.com/cschweig2/Library.Solution._
-3. _After clicking the green "code" button, you can copy the URL for the repository._
-4. _Open a terminal window, such as Command Prompt or Git Bash._<br>
-  4a. _Type in this command: "git clone", followed by the URL you just copied. The full command should look like this: "git clone https://github.com/cschweig2/Library.Solution"._
-5. _View the code on your favorite text editor, such as Visual Studio Code._
-
-#### Download
-1. _Click [here](https://github.com/cschweig2/Library.Solution) to view project repository._
-2. _Click "Clone or download" to find the "Download ZIP" option._
-3. _Click "Download ZIP" and extract files._
-4. _Open the project in a text editor by clicking on any file in the project folder._
-
-#### Import Database in MySQL Workbench
-1. _Open MySQL Workbench and enter your password to open a server._
-2. _From the top navigation bar, follow:_ `Server > Data Import`._
-4. _Select the option_ `Import from Self-Contained File`._
-5. _Click the `...` button to navigate to the project file folder `Library` and select `library.sql`._
-5. _Set_ `Default Target Schema` _or create new schema._
-6. _Select the schema objects you would like to import_
-7. _To finalize, click_ `Start Import`._
-
-#### Import Database with SQL Schema
-
-_Open MySQL Workbench and paste the following Schema Create Statement to replicate the database and its tables._
-
-```
 DROP TABLE IF EXISTS `__efmigrationshistory`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `__efmigrationshistory` (
   `MigrationId` varchar(95) NOT NULL,
   `ProductVersion` varchar(32) NOT NULL,
   PRIMARY KEY (`MigrationId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `aspnetroleclaims`
+--
 
 DROP TABLE IF EXISTS `aspnetroleclaims`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `aspnetroleclaims` (
   `Id` int NOT NULL AUTO_INCREMENT,
   `RoleId` varchar(255) NOT NULL,
@@ -111,8 +47,15 @@ CREATE TABLE `aspnetroleclaims` (
   KEY `IX_AspNetRoleClaims_RoleId` (`RoleId`),
   CONSTRAINT `FK_AspNetRoleClaims_AspNetRoles_RoleId` FOREIGN KEY (`RoleId`) REFERENCES `aspnetroles` (`Id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `aspnetroles`
+--
 
 DROP TABLE IF EXISTS `aspnetroles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `aspnetroles` (
   `Id` varchar(255) NOT NULL,
   `Name` varchar(256) DEFAULT NULL,
@@ -121,8 +64,15 @@ CREATE TABLE `aspnetroles` (
   PRIMARY KEY (`Id`),
   UNIQUE KEY `RoleNameIndex` (`NormalizedName`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `aspnetuserclaims`
+--
 
 DROP TABLE IF EXISTS `aspnetuserclaims`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `aspnetuserclaims` (
   `Id` int NOT NULL AUTO_INCREMENT,
   `UserId` varchar(255) NOT NULL,
@@ -132,8 +82,15 @@ CREATE TABLE `aspnetuserclaims` (
   KEY `IX_AspNetUserClaims_UserId` (`UserId`),
   CONSTRAINT `FK_AspNetUserClaims_AspNetUsers_UserId` FOREIGN KEY (`UserId`) REFERENCES `aspnetusers` (`Id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `aspnetuserlogins`
+--
 
 DROP TABLE IF EXISTS `aspnetuserlogins`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `aspnetuserlogins` (
   `LoginProvider` varchar(255) NOT NULL,
   `ProviderKey` varchar(255) NOT NULL,
@@ -143,8 +100,15 @@ CREATE TABLE `aspnetuserlogins` (
   KEY `IX_AspNetUserLogins_UserId` (`UserId`),
   CONSTRAINT `FK_AspNetUserLogins_AspNetUsers_UserId` FOREIGN KEY (`UserId`) REFERENCES `aspnetusers` (`Id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `aspnetuserroles`
+--
 
 DROP TABLE IF EXISTS `aspnetuserroles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `aspnetuserroles` (
   `UserId` varchar(255) NOT NULL,
   `RoleId` varchar(255) NOT NULL,
@@ -153,8 +117,15 @@ CREATE TABLE `aspnetuserroles` (
   CONSTRAINT `FK_AspNetUserRoles_AspNetRoles_RoleId` FOREIGN KEY (`RoleId`) REFERENCES `aspnetroles` (`Id`) ON DELETE CASCADE,
   CONSTRAINT `FK_AspNetUserRoles_AspNetUsers_UserId` FOREIGN KEY (`UserId`) REFERENCES `aspnetusers` (`Id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `aspnetusers`
+--
 
 DROP TABLE IF EXISTS `aspnetusers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `aspnetusers` (
   `Id` varchar(255) NOT NULL,
   `UserName` varchar(256) DEFAULT NULL,
@@ -175,8 +146,15 @@ CREATE TABLE `aspnetusers` (
   UNIQUE KEY `UserNameIndex` (`NormalizedUserName`),
   KEY `EmailIndex` (`NormalizedEmail`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `aspnetusertokens`
+--
 
 DROP TABLE IF EXISTS `aspnetusertokens`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `aspnetusertokens` (
   `UserId` varchar(255) NOT NULL,
   `LoginProvider` varchar(255) NOT NULL,
@@ -185,8 +163,15 @@ CREATE TABLE `aspnetusertokens` (
   PRIMARY KEY (`UserId`,`LoginProvider`,`Name`),
   CONSTRAINT `FK_AspNetUserTokens_AspNetUsers_UserId` FOREIGN KEY (`UserId`) REFERENCES `aspnetusers` (`Id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `authorbook`
+--
 
 DROP TABLE IF EXISTS `authorbook`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `authorbook` (
   `AuthorBookID` int NOT NULL AUTO_INCREMENT,
   `AuthorId` int DEFAULT NULL,
@@ -197,15 +182,29 @@ CREATE TABLE `authorbook` (
   CONSTRAINT `FK_AuthorBook_Authors_AuthorId` FOREIGN KEY (`AuthorId`) REFERENCES `authors` (`AuthorId`) ON DELETE RESTRICT,
   CONSTRAINT `FK_AuthorBook_Books_BookId` FOREIGN KEY (`BookId`) REFERENCES `books` (`BookId`) ON DELETE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `authors`
+--
 
 DROP TABLE IF EXISTS `authors`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `authors` (
   `AuthorId` int NOT NULL AUTO_INCREMENT,
   `AuthorName` longtext,
   PRIMARY KEY (`AuthorId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `bookpatron`
+--
 
 DROP TABLE IF EXISTS `bookpatron`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bookpatron` (
   `BookPatronId` int NOT NULL AUTO_INCREMENT,
   `BookId` int DEFAULT NULL,
@@ -216,8 +215,15 @@ CREATE TABLE `bookpatron` (
   CONSTRAINT `FK_BookPatron_Books_BookId` FOREIGN KEY (`BookId`) REFERENCES `books` (`BookId`) ON DELETE RESTRICT,
   CONSTRAINT `FK_BookPatron_Patrons_PatronId` FOREIGN KEY (`PatronId`) REFERENCES `patrons` (`PatronId`) ON DELETE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `books`
+--
 
 DROP TABLE IF EXISTS `books`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `books` (
   `BookId` int NOT NULL AUTO_INCREMENT,
   `CheckedOut` bit(1) NOT NULL,
@@ -232,8 +238,15 @@ CREATE TABLE `books` (
   CONSTRAINT `FK_Books_AspNetUsers_UserId` FOREIGN KEY (`UserId`) REFERENCES `aspnetusers` (`Id`) ON DELETE RESTRICT,
   CONSTRAINT `FK_Books_Copies_CopyId` FOREIGN KEY (`CopyId`) REFERENCES `copies` (`CopyId`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `checkout`
+--
 
 DROP TABLE IF EXISTS `checkout`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `checkout` (
   `CheckoutId` int NOT NULL AUTO_INCREMENT,
   `PatronId` int DEFAULT NULL,
@@ -244,76 +257,42 @@ CREATE TABLE `checkout` (
   CONSTRAINT `FK_Checkout_Copies_CopyId` FOREIGN KEY (`BookId`) REFERENCES `copies` (`CopyId`) ON DELETE RESTRICT,
   CONSTRAINT `FK_Checkout_Patrons_PatronId` FOREIGN KEY (`PatronId`) REFERENCES `patrons` (`PatronId`) ON DELETE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `copies`
+--
 
 DROP TABLE IF EXISTS `copies`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `copies` (
   `CopyId` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`CopyId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `patrons`
+--
 
 DROP TABLE IF EXISTS `patrons`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `patrons` (
   `PatronId` int NOT NULL AUTO_INCREMENT,
   `PatronName` longtext,
   PRIMARY KEY (`PatronId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-```
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
-#### Final Steps
-1. _Navigate to the Library folder and enter "dotnet restore" in the command line to install packages._
-2._After packages are installed in each of these folders, you may use "dotnet run" to both run and build the program._
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-## Known Bugs
-
-No known bugs at this time. Report any found bugs, or request features [here](https://github.com/cschweig2/Library.Solution/issues).
-
-## Stretch Goals
-
-- Search feature for books by author or title.
-- Finish and add Overdue status to views based on checked out status.
-- Add copies model back into project so user can know how many copies of a book are on the shelf. Would need to tie copies into checked out property, & tie into Patrons (two more join relationships). (Find good examples of checkouts [here](https://github.com/tmemmerson/Library.Solution))
-- Disallow for duplicate Patrons in patrons list, Authors in authors list, and Titles in books list - with a slight tweak to books by only adding a new copy to an existing book.
-- Be able to have librarian/administrator see a list of overdue books, so they can call up the patron who checked them out and tell them to bring them back.
-- Calling a logged-in user's name in the welcome message, not their user name (email, currently).
-- Add multiple user types to the authorization settings - i.e. an administrator log in, and a patron log in.
-
-(Notes: For copies - if AuthorId and BookId in database are equal to new entry, increment id by 1 for the copy.)
-
-## Support and contact details
-
-_If you run into any issues, you can contact the creators at chelraebecker@gmail.com & danithompson74@gmail.com, or make contributions to the code on GitHub via forking and creating a new branch._
-
-## Contributors
-
-<table>
-  <tr>
-    <th>Author</th>
-    <th>GitHub Profile</th>
-    <th>Contact Email</th>
-  </tr>
-  <tr>
-    <td>Chelsea Becker</td>
-    <td>https://github.com/cschweig2</td>
-    <td>chelraebecker@gmail.com</td>
-  </tr>
-  <tr>
-    <td>Danielle Thompson</td>
-    <td>https://github.com/dani-t-codes/</td>
-    <td>danithompson74@gmail.com</td>
-  </tr>
-</table>
-
-## Technologies Used
-
-_VS Code_ <br>
-_C# 7.3.0_<br>
-_.NET Core 2.2.0_<br>
-_ASP.NET Core MVC_<br>
-_Entity Framework Core 2.2.6_<br>
-_MySQL Workbench 8.0 for Windows_
-
-## Legal
-
-*This software is licensed under the MIT license.*
-
-Copyright (c) 2020 **Chelsea Becker and Danielle Thompson**
+-- Dump completed on 2021-01-13 15:57:13
